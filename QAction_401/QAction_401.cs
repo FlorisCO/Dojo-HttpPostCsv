@@ -33,6 +33,7 @@ public static class QAction
 	{
 		var sb = new StringBuilder();
 
+		sb.Append("--");
 		sb.AppendLine(Boundary);
 
 		sb.Append("Content-Disposition: form-data; name=\"").Append(name).Append("\"; ");
@@ -43,7 +44,7 @@ public static class QAction
 		sb.AppendLine();
 		sb.AppendLine(value);
 
-		sb.Append(Boundary).AppendLine("--");
+		sb.Append("--").Append(Boundary).AppendLine("--");
 
 		return sb.ToString();
 	}
