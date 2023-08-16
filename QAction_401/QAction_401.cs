@@ -43,7 +43,7 @@ public static class QAction
 		sb.AppendLine();
 		sb.AppendLine(value);
 
-		sb.AppendLine(Boundary);
+		sb.Append(Boundary).AppendLine("--");
 
 		return sb.ToString();
 	}
