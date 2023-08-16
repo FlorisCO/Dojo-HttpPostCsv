@@ -79,7 +79,7 @@ Any inquiries can be addressed to:
 					<Position>
 						<Page>General</Page>
 						<Column>0</Column>
-						<Row>2</Row>
+						<Row>3</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -89,6 +89,10 @@ Any inquiries can be addressed to:
 					<Discreet>
 						<Display>Post</Display>
 						<Value>1</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Post Multipart</Display>
+						<Value>2</Value>
 					</Discreet>
 				</Discreets>
 			</Measurement>
@@ -144,9 +148,9 @@ Any inquiries can be addressed to:
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		<Param id="410" trending="false">
-			<Name>Session Authorization</Name>
-			<Description>Session Authorization</Description>
+		<Param id="402" trending="false">
+			<Name>Csv Multipart Content</Name>
+			<Description>CSV Multipart Content</Description>
 			<Type>read</Type>
 			<Information>
 			</Information>
@@ -166,34 +170,10 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type>string</Type>
+				<Type lines="5">string</Type>
 			</Measurement>
 		</Param>
-		<Param id="411" trending="false" setter="true">
-			<Name>Session Authorization</Name>
-			<Description>Session Authorization</Description>
-			<Type>write</Type>
-			<Information>
-			</Information>
-			<Interprete>
-				<RawType>other</RawType>
-				<Type>string</Type>
-				<LengthType>next param</LengthType>
-			</Interprete>
-			<Display>
-				<RTDisplay>true</RTDisplay>
-				<Positions>
-					<Position>
-						<Page>General</Page>
-						<Column>0</Column>
-						<Row>1</Row>
-					</Position>
-				</Positions>
-			</Display>
-			<Measurement>
-				<Type>string</Type>
-			</Measurement>
-		</Param>
+		
 		<Param id="420" trending="false">
 			<Name>Session Response Status Code</Name>
 			<Description>Session Response Status Code</Description>
@@ -211,7 +191,7 @@ Any inquiries can be addressed to:
 					<Position>
 						<Page>General</Page>
 						<Column>0</Column>
-						<Row>3</Row>
+						<Row>4</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -236,7 +216,7 @@ Any inquiries can be addressed to:
 					<Position>
 						<Page>General</Page>
 						<Column>0</Column>
-						<Row>4</Row>
+						<Row>5</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -261,7 +241,7 @@ Any inquiries can be addressed to:
 					<Position>
 						<Page>General</Page>
 						<Column>0</Column>
-						<Row>5</Row>
+						<Row>6</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -272,6 +252,8 @@ Any inquiries can be addressed to:
 	</Params>
 
 	<QActions>
+		<QAction id="401" name="CreateMultipart" encoding="csharp" triggers="401">
+		</QAction>
 	</QActions>
 
 	<HTTP>
@@ -281,6 +263,24 @@ Any inquiries can be addressed to:
 					<Data pid="400"></Data>
 					<Headers>
 						<Header key="Content-Type">text/csv</Header>
+						<Header key="accept">application/json</Header>
+					</Headers>
+				</Request>
+				<Response statusCode="420">
+					<Headers>
+						<Header key="Content-Type" pid="422"/>
+					</Headers>
+					<Content pid="424"/>
+				</Response>
+			</Connection>
+		</Session>
+
+		<Session id="450" name="Import Catalog File" keepAlive="true">
+			<Connection id="1" ignoreTimeout="true">
+				<Request verb="POST" url="/api/v1/catalogs/imports?clean_catalog=1">
+					<Data pid="402"></Data>
+					<Headers>
+						<Header key="Content-Type">multipart/form-data; boundary=------------------------74bd4318f823d8cb</Header>
 						<Header key="accept">application/json</Header>
 					</Headers>
 				</Request>
@@ -303,6 +303,14 @@ Any inquiries can be addressed to:
 				<Session>400</Session>
 			</Content>
 		</Group>
+		<Group id="450">
+			<Name>CsvPostMultipart</Name>
+			<Description>CSV POST Multipart</Description>
+			<Type>poll</Type>
+			<Content>
+				<Session>450</Session>
+			</Content>
+		</Group>
 	</Groups>
 
 	<Triggers>
@@ -311,8 +319,19 @@ Any inquiries can be addressed to:
 			<On id="100">parameter</On>
 			<Time>change</Time>
 			<Type>action</Type>
+			<Condition><![CDATA[id:100 == 1]]></Condition>
 			<Content>
 				<Id>100</Id>
+			</Content>
+		</Trigger>
+		<Trigger id="101">
+			<Name>Name</Name>
+			<On id="100">parameter</On>
+			<Time>change</Time>
+			<Type>action</Type>
+			<Condition><![CDATA[id:100 == 2]]></Condition>
+			<Content>
+				<Id>101</Id>
 			</Content>
 		</Trigger>
 	</Triggers>
@@ -321,6 +340,11 @@ Any inquiries can be addressed to:
 		<Action id="100">
 			<Name>Execute CSV POST</Name>
 			<On id="400">group</On>
+			<Type>execute</Type>
+		</Action>
+		<Action id="101">
+			<Name>Execute CSV POST Multipart</Name>
+			<On id="450">group</On>
 			<Type>execute</Type>
 		</Action>
 	</Actions>

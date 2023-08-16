@@ -30,6 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code Analysis", "Code Analy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QAction_Helper", "QAction_Helper\QAction_Helper.csproj", "{84821EAB-BEED-4466-A0D5-66BF56E8222C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QAction_401", "QAction_401\QAction_401.csproj", "{BCBECD5A-1B60-4A37-8962-88951EA1F2A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{84821EAB-BEED-4466-A0D5-66BF56E8222C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84821EAB-BEED-4466-A0D5-66BF56E8222C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84821EAB-BEED-4466-A0D5-66BF56E8222C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCBECD5A-1B60-4A37-8962-88951EA1F2A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCBECD5A-1B60-4A37-8962-88951EA1F2A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCBECD5A-1B60-4A37-8962-88951EA1F2A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCBECD5A-1B60-4A37-8962-88951EA1F2A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +53,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{77821E9E-D618-4F79-93D2-52353A654A39} = {B1977E51-63A1-4282-9FE0-5A8765638C04}
 		{84821EAB-BEED-4466-A0D5-66BF56E8222C} = {B1977E51-63A1-4282-9FE0-5A8765638C04}
+		{BCBECD5A-1B60-4A37-8962-88951EA1F2A2} = {A4ADE86B-954F-4B59-8B02-31D91C1B41FE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2DA479C8-0E5F-4A09-8146-C79D664BF880}

@@ -13,11 +13,11 @@ public static class Parameter
 	public const int csvContent_400 = 400;
 	/// <summary>PID: 400 | Type: read</summary>
 	public const int csvContent = 400;
-	/// <summary>PID: 410 | Type: read</summary>
+	/// <summary>PID: 402 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public const int sessionAuthorization_410 = 410;
-	/// <summary>PID: 410 | Type: read</summary>
-	public const int sessionAuthorization = 410;
+	public const int csvMultipartContent_402 = 402;
+	/// <summary>PID: 402 | Type: read</summary>
+	public const int csvMultipartContent = 402;
 	/// <summary>PID: 420 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public const int sessionResponseStatusCode_420 = 420;
@@ -45,21 +45,14 @@ public static class Parameter
 		public const int csvContent_401 = 401;
 		/// <summary>PID: 401 | Type: write</summary>
 		public const int csvContent = 401;
-		/// <summary>PID: 411 | Type: write</summary>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public const int sessionAuthorization_411 = 411;
-		/// <summary>PID: 411 | Type: write</summary>
-		public const int sessionAuthorization = 411;
 	}
 }
 public class WriteParameters
 {
-	/// <summary>PID: 100  | Type: write | DISCREETS: Post = 1</summary>
+	/// <summary>PID: 100  | Type: write | DISCREETS: Post = 1, Post Multipart = 2</summary>
 	public System.Object Triggercsvpost {get { return Protocol.GetParameter(100); }set { Protocol.SetParameter(100, value); }}
 	/// <summary>PID: 401  | Type: write</summary>
 	public System.Object CsvContent {get { return Protocol.GetParameter(401); }set { Protocol.SetParameter(401, value); }}
-	/// <summary>PID: 411  | Type: write</summary>
-	public System.Object SessionAuthorization {get { return Protocol.GetParameter(411); }set { Protocol.SetParameter(411, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -73,9 +66,8 @@ public interface SLProtocolExt : SLProtocol
 	object CsvContent_400 { get; set; }
 	object CsvContent { get; set; }
 	object CsvContent_401 { get; set; }
-	object SessionAuthorization_410 { get; set; }
-	object SessionAuthorization { get; set; }
-	object SessionAuthorization_411 { get; set; }
+	object CsvMultipartContent_402 { get; set; }
+	object CsvMultipartContent { get; set; }
 	object SessionResponseStatusCode_420 { get; set; }
 	object SessionResponseStatusCode { get; set; }
 	object SessionResponseContentType_422 { get; set; }
@@ -86,9 +78,9 @@ public interface SLProtocolExt : SLProtocol
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 {
-	/// <summary>PID: 100  | Type: write | DISCREETS: Post = 1</summary>
+	/// <summary>PID: 100  | Type: write | DISCREETS: Post = 1, Post Multipart = 2</summary>
 	public System.Object Triggercsvpost_100 {get { return GetParameter(100); }set { SetParameter(100, value); }}
-	/// <summary>PID: 100  | Type: write | DISCREETS: Post = 1</summary>
+	/// <summary>PID: 100  | Type: write | DISCREETS: Post = 1, Post Multipart = 2</summary>
 	public System.Object Triggercsvpost {get { return Write.Triggercsvpost; }set { Write.Triggercsvpost = value; }}
 	/// <summary>PID: 400  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
@@ -98,14 +90,11 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	/// <summary>PID: 401  | Type: write</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object CsvContent_401 {get { return GetParameter(401); }set { SetParameter(401, value); }}
-	/// <summary>PID: 410  | Type: read</summary>
+	/// <summary>PID: 402  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object SessionAuthorization_410 {get { return GetParameter(410); }set { SetParameter(410, value); }}
-	/// <summary>PID: 410  | Type: read</summary>
-	public System.Object SessionAuthorization {get { return GetParameter(410); }set { SetParameter(410, value); }}
-	/// <summary>PID: 411  | Type: write</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object SessionAuthorization_411 {get { return GetParameter(411); }set { SetParameter(411, value); }}
+	public System.Object CsvMultipartContent_402 {get { return GetParameter(402); }set { SetParameter(402, value); }}
+	/// <summary>PID: 402  | Type: read</summary>
+	public System.Object CsvMultipartContent {get { return GetParameter(402); }set { SetParameter(402, value); }}
 	/// <summary>PID: 420  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object SessionResponseStatusCode_420 {get { return GetParameter(420); }set { SetParameter(420, value); }}
